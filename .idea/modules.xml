@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/A-Introduction_to_java/A-Introduction_to_java.iml" filepath="$PROJECT_DIR$/java-se-programming/A-Introduction_to_java/A-Introduction_to_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/C-setup_java_environment/C-setup_java_environment.iml" filepath="$PROJECT_DIR$/java-se-programming/C-setup_java_environment/C-setup_java_environment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/D-operator_and_expressions/D-operator_and_expressions.iml" filepath="$PROJECT_DIR$/java-se-programming/D-operator_and_expressions/D-operator_and_expressions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/E-string_class_and_printing/E-string_class_and_printing.iml" filepath="$PROJECT_DIR$/java-se-programming/E-string_class_and_printing/E-string_class_and_printing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/F-conditionalstatements/F-conditionalstatements.iml" filepath="$PROJECT_DIR$/java-se-programming/F-conditionalstatements/F-conditionalstatements.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/G-loops/G-loops.iml" filepath="$PROJECT_DIR$/java-se-programming/G-loops/G-loops.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/H-arrays/H-arrays.iml" filepath="$PROJECT_DIR$/java-se-programming/H-arrays/H-arrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/I-methods/I-methods.iml" filepath="$PROJECT_DIR$/java-se-programming/I-methods/I-methods.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/J-object_oriented_rogramming/J-object_oriented_rogramming.iml" filepath="$PROJECT_DIR$/java-se-programming/J-object_oriented_rogramming/J-object_oriented_rogramming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/K-inheritance/K-inheritance.iml" filepath="$PROJECT_DIR$/java-se-programming/K-inheritance/K-inheritance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/L-abstract_classes/L-abstract_classes.iml" filepath="$PROJECT_DIR$/java-se-programming/L-abstract_classes/L-abstract_classes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/M-interfaces/M-interfaces.iml" filepath="$PROJECT_DIR$/java-se-programming/M-interfaces/M-interfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/N-inner_classes/N-inner_classes.iml" filepath="$PROJECT_DIR$/java-se-programming/N-inner_classes/N-inner_classes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/O_static_and _final/O_static_and _final.iml" filepath="$PROJECT_DIR$/java-se-programming/O_static_and _final/O_static_and _final.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/P_packages/P_packages.iml" filepath="$PROJECT_DIR$/java-se-programming/P_packages/P_packages.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/Q_exception_handling/Q_exception_handling.iml" filepath="$PROJECT_DIR$/java-se-programming/Q_exception_handling/Q_exception_handling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/R_multithreading/R_multithreading.iml" filepath="$PROJECT_DIR$/java-se-programming/R_multithreading/R_multithreading.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/S_java_lang_package/S_java_lang_package.iml" filepath="$PROJECT_DIR$/java-se-programming/S_java_lang_package/S_java_lang_package.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/T_annotations_and_javadoc/T_annotations_and_javadoc.iml" filepath="$PROJECT_DIR$/java-se-programming/T_annotations_and_javadoc/T_annotations_and_javadoc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/U_lambda_expressions/U_lambda_expressions.iml" filepath="$PROJECT_DIR$/java-se-programming/U_lambda_expressions/U_lambda_expressions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/V-Java_IO/V-Java_IO.iml" filepath="$PROJECT_DIR$/java-se-programming/V-Java_IO/V-Java_IO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/W-Collection_framework/W-Collection_framework.iml" filepath="$PROJECT_DIR$/java-se-programming/W-Collection_framework/W-Collection_framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/X_network_programming/X_network_programming.iml" filepath="$PROJECT_DIR$/java-se-programming/X_network_programming/X_network_programming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/Y_AWT/Y_AWT.iml" filepath="$PROJECT_DIR$/java-se-programming/Y_AWT/Y_AWT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/Z_swing/Z_swing.iml" filepath="$PROJECT_DIR$/java-se-programming/Z_swing/Z_swing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-se-programming/java-se-programming.iml" filepath="$PROJECT_DIR$/java-se-programming/java-se-programming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/udemy.iml" filepath="$PROJECT_DIR$/.idea/udemy.iml" />
+    </modules>
+  </component>
+</project>

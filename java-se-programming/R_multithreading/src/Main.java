@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Function;
@@ -14,7 +16,54 @@ public class Main {
             System.out.println("java executor service \n");
 
             ExecutorService executorServicePool = Executors.newFixedThreadPool(1);
-            ExecutorService executorServicePool2 = Executors.newFixedThreadPool(10);
+
+            List<Callable<String>> callables = new ArrayList<>();
+            callables.add(newCallable("Task 1.1 "));
+            callables.add(newCallable("Task 1.2 "));
+            callables.add(newCallable("Task 1.3 "));
+
+            try {
+                List<Future<String>> results = executorServicePool.invokeAll(callables);
+                for (Future<String> future : results) {
+                    try {
+                        System.out.println("Result: " + future.get());
+                    } catch (ExecutionException e) {
+                        System.err.println("Task execution failed: " + e.getMessage());
+                    }
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.err.println("Tasks were interrupted");
+            } finally {
+                executorServicePool.shutdown();
+            }
+
+
+
+            try {
+                //RejectedExecutionException ->   Make sure shutdown() is not called before invoking tasks
+                String result = executorServicePool.invokeAny(callables);
+                System.out.println("First completed task result: " + result);
+            } catch (InterruptedException | ExecutionException e) {
+                System.err.println("Task execution failed: " + e.getMessage());
+            }
+            // Shutdown only after tasks are executed
+            executorServicePool.shutdown();
+
+
+
+            try {
+                String result = executorServicePool.invokeAny(callables);
+                System.out.println("First completed task result: " + result);
+                //  String result = (String) executorServicePool.invokeAll((Collection) callables);
+
+            } catch (InterruptedException e) {
+                System.out.println();
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+
+
             Future future = executorServicePool.submit(newCallable("Task 1.1"));
             System.out.println(future.isDone());
             boolean mayInterrupt = true;

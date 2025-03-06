@@ -14,6 +14,7 @@ public class Main {
             System.out.println("java executor service \n");
 
             ExecutorService executorServicePool = Executors.newFixedThreadPool(1);
+            ExecutorService executorServicePool2 = Executors.newFixedThreadPool(10);
             Future future = executorServicePool.submit(newCallable("Task 1.1"));
             System.out.println(future.isDone());
             boolean mayInterrupt = true;

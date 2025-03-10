@@ -1,12 +1,10 @@
+package concurrency;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.function.Function;
 
-public class Main {
-
-
+public class ExecutorServiceExample {
     public static void main(String[] args) {
         //  Java ExecutorService
         //  Java ExecutorService

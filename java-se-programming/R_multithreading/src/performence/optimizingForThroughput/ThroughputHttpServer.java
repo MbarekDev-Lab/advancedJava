@@ -24,6 +24,7 @@ public class ThroughputHttpServer {
                 System.err.println("Error: File not found at " + INPUT_FILE);
                 return;
             }
+           // String text = new String(Files.readAllBytes(Paths.get(INPUT_FILE)));
 
             // Read file content safely
             String text = Files.readString(Paths.get(INPUT_FILE), StandardCharsets.UTF_8);

@@ -1,4 +1,4 @@
-package concurrency;
+package performence.optimizingForThroughput;
 
 import java.util.ArrayList;
 import java.util.List;

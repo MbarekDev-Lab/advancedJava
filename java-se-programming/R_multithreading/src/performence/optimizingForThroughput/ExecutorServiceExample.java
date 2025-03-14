@@ -62,7 +62,7 @@ public class ExecutorServiceExample {
             }
 
 
-            Future future = executorServicePool.submit(newCallable("Task 1.1"));
+            Future<String> future = executorServicePool.submit(newCallable("Task 1.1"));
             System.out.println(future.isDone());
             boolean mayInterrupt = true;
             future.cancel(mayInterrupt);

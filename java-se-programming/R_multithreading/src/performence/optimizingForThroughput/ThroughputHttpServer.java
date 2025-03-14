@@ -30,7 +30,6 @@ public class ThroughputHttpServer {
             String text = Files.readString(Paths.get(INPUT_FILE), StandardCharsets.UTF_8);
             startServer(text);
         } catch (IOException e) {
-            e.printStackTrace();
             System.err.println("Error reading file: " + e.getMessage());
         }
     }

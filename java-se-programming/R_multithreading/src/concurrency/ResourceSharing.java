@@ -7,15 +7,27 @@ public class ResourceSharing {
 
     public static void main(String[] args) throws InterruptedException {
         InventoryCounter inventoryCounter = new InventoryCounter();
+
         IncrementingThread incrementingThread = new IncrementingThread(inventoryCounter);
         DecrementingThread decrementingThread = new DecrementingThread(inventoryCounter);
+
+        IncrementingThread incrementingThread2 = new IncrementingThread(inventoryCounter);
+        DecrementingThread decrementingThread2 = new DecrementingThread(inventoryCounter);
 
         incrementingThread.start();
         decrementingThread.start();
         incrementingThread.join();
         decrementingThread.join();
 
+        incrementingThread2.start();
+        decrementingThread2.start();
+        incrementingThread2.join();
+        decrementingThread2.join();
+
         System.out.println("We currently have " + inventoryCounter.getItems() + " items");
+
+
+
     }
 
     public static class DecrementingThread extends Thread {
@@ -51,7 +63,8 @@ public class ResourceSharing {
 
     private static class InventoryCounter {
         private int items = 0;
-        private final Lock lock = new ReentrantLock();
+        //private final Lock lock = new ReentrantLock();
+        private static final Lock lock = new ReentrantLock(); // Static Lock for Class-Level Locking
 
         public void increment() {
             lock.lock();
@@ -77,12 +90,13 @@ public class ResourceSharing {
     }
 
 
+
 /*
 Option 1: Synchronizing Methods (synchronized ensures only one thread can execute increment() or decrement() at a time.)
 
 private static class InventoryCounter {
     private int items = 0;
-
+       //  synchronized (InventoryCounter.class) { // Class-level lock
     public synchronized void increment() {
         items++;
     }
@@ -136,9 +150,11 @@ private static class InventoryCounter {
 private static class InventoryCounter {
     private int items = 0;
     private final Object lock = new Object(); // Custom lock object
+     //private static final Object lock = new Object(); // Shared lock across all instances
 
     public void increment() {
         synchronized (lock) { // Locking on the object
+                                // Synchronizing on a static object
             items++;
         }
     }

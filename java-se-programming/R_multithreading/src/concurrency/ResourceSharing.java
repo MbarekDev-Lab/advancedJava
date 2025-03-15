@@ -1,5 +1,8 @@
 package concurrency;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class ResourceSharing {
 
     public static void main(String[] args) throws InterruptedException {
@@ -45,18 +48,30 @@ public class ResourceSharing {
         }
     }
 
+
     private static class InventoryCounter {
         private int items = 0;
+        private final Lock lock = new ReentrantLock();
 
-        public synchronized void increment() {
-            items++;
+        public void increment() {
+            lock.lock();
+            try {
+                items++;
+            } finally {
+                lock.unlock();
+            }
         }
 
-        public synchronized void decrement() {
-            items--;
+        public void decrement() {
+            lock.lock();
+            try {
+                items--;
+            } finally {
+                lock.unlock();
+            }
         }
 
-        public synchronized int getItems() {
+        public int getItems() {
             return items;
         }
     }

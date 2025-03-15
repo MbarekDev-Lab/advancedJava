@@ -1,4 +1,4 @@
-package concurrency;
+package quiz;
 
 import java.util.ArrayList;
 import java.util.List;

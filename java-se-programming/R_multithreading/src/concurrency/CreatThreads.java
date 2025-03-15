@@ -24,7 +24,7 @@ public class CreatThreads {
     }
 
     private static class Vault {
-        private int password;
+        private final int password;
 
         public Vault(int password) {
             this.password = password;

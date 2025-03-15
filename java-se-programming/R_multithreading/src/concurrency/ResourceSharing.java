@@ -18,7 +18,7 @@ public class ResourceSharing {
 
     public static class DecrementingThread extends Thread {
 
-        private InventoryCounter inventoryCounter;
+        private final InventoryCounter inventoryCounter;
 
         public DecrementingThread(InventoryCounter inventoryCounter) {
             this.inventoryCounter = inventoryCounter;
@@ -34,7 +34,7 @@ public class ResourceSharing {
 
     public static class IncrementingThread extends Thread {
 
-        private InventoryCounter inventoryCounter;
+        private final InventoryCounter inventoryCounter;
 
         public IncrementingThread(InventoryCounter inventoryCounter) {
             this.inventoryCounter = inventoryCounter;

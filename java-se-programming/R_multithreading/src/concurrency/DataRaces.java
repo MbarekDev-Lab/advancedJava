@@ -1,11 +1,11 @@
 package concurrency;
 
-public class sharedClass {
+public class DataRaces {
 
 
     public static void main(String[] args) {
-
         InnerSharedClass sharedClass = new InnerSharedClass();
+
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < Integer.MAX_VALUE; i++) {
                 sharedClass.increment();
@@ -21,8 +21,6 @@ public class sharedClass {
         thread1.start();
         thread2.start();
     }
-
-
 
     public static class InnerSharedClass {
         private int x = 0;

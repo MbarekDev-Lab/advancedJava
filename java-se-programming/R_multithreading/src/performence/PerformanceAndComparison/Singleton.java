@@ -4,6 +4,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Singleton {
+    // AtomicReference to hold the singleton instance
+    private static final AtomicReference<Singleton> INSTANCE = new AtomicReference<>();
+
+    // Example grid-like data (can be any shared resource)
+    private final AtomicInteger[] grid;
 
     public static void main(String[] args) {
         // Create Singleton instance with a grid size of 10
@@ -21,12 +26,6 @@ public class Singleton {
         singleton.addToGridValue(2, 10);
         System.out.println("After adding 10, grid value at index 2: " + singleton.getGridValue(2));
     }
-
-    // AtomicReference to hold the singleton instance
-    private static final AtomicReference<Singleton> INSTANCE = new AtomicReference<>();
-
-    // Example grid-like data (can be any shared resource)
-    private final AtomicInteger[] grid;
 
     // Private constructor to prevent instantiation
     private Singleton(int gridSize) {
@@ -85,4 +84,5 @@ public class Singleton {
             grid[index].addAndGet(delta); // Atomic add
         }
     }
+
 }

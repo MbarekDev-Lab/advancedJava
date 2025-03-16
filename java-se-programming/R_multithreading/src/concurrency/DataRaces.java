@@ -1,8 +1,6 @@
 package concurrency;
 
 public class DataRaces {
-
-
     public static void main(String[] args) {
         InnerSharedClass sharedClass = new InnerSharedClass();
 
@@ -26,12 +24,12 @@ public class DataRaces {
         private int x = 0;
         private int y = 0;
 
-        public void increment() {
+        public synchronized  void increment() {
             x++;
             y++;
         }
 
-        public void checkForDataRace() {
+        public synchronized  void checkForDataRace() {
             if (y > x) {
                 System.out.println("y > x - Data Race is detected");
             }

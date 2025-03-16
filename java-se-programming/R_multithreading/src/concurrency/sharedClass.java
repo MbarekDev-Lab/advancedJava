@@ -18,7 +18,6 @@ public class sharedClass {
             }
 
         });
-
         thread1.start();
         thread2.start();
     }

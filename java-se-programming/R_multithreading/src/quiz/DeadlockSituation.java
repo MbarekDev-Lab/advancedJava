@@ -82,7 +82,6 @@ public class DeadlockSituation {
         public synchronized double getAverage() {
             return average;
 
-
         }
 
 

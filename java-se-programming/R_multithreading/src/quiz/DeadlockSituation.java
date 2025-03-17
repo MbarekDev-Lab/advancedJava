@@ -49,4 +49,43 @@ public class DeadlockSituation {
             return average;
         }
     }
+
+
+    /*
+    The downside is if the majority of calls on that instance of the Merics class are the getCount getMax and getAverage
+     */
+
+    public class Metrics {
+        private long count;
+        private double average;
+        private long max;
+
+        public synchronized void addSample(long sample) {
+            average = (average * count + sample) / (++count);
+            max = Math.max(max, sample);
+        }
+
+        public synchronized void reset() {
+            count = 0;
+            max = Integer.MIN_VALUE;
+            average = 0.0;
+        }
+
+        public synchronized long getCount() {
+            return count;
+        }
+
+        public synchronized long getMax() {
+            return max;
+        }
+
+        public synchronized double getAverage() {
+            return average;
+
+
+        }
+
+
+    }
+
 }

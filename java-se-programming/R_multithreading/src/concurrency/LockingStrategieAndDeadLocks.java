@@ -3,6 +3,7 @@ package concurrency;
 import java.util.Random;
 
 public class LockingStrategieAndDeadLocks {
+    // enforcing a strict ordere on lock acquisition prevents deadlocks.
 
     public static void main(String[] args) {
         Intersection intersection = new Intersection();
@@ -76,10 +77,10 @@ public class LockingStrategieAndDeadLocks {
         }
 
         public void takeRoadB() {
-            synchronized (roadB) {
-                System.out.println("Road B is locked by thread " + Thread.currentThread().getName());
+            synchronized (roadA) {
+                System.out.println("Road A is locked by thread " + Thread.currentThread().getName());
 
-                synchronized (roadA) {
+                synchronized (roadB) {
                     System.out.println("Train is passing through road B");
 
                     try {

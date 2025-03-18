@@ -56,7 +56,6 @@ public class ReentrantReadWriteLockDBImp {
         }
 
         long endReadingTime = System.currentTimeMillis();
-
         System.out.println(String.format("Reading took %d ms", endReadingTime - startReadingTime));
     }
 

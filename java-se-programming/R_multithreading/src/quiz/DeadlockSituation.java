@@ -52,7 +52,7 @@ public class DeadlockSituation {
 
 
     /*
-    The downside is if the majority of calls on that instance of the Merics class are the getCount getMax and getAverage
+        The downside is if the majority of calls on that instance of the Merics class are the getCount getMax and getAverage
      */
 
     public class Metrics {

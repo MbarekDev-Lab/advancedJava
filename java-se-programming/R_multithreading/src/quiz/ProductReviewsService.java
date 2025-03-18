@@ -5,16 +5,22 @@ import java.util.*;
 import java.util.concurrent.locks.*;
 import java.util.*;
 import java.util.concurrent.locks.*;
+import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ProductReviewsService {
-
     private final HashMap<Integer, List<String>> productIdToReviews;
-    private final ReadWriteLock readWriteLock;  // ReentrantReadWriteLock for handling read/write operations
 
-    // Constructor to initialize the map and lock
+    // Create your member variables here
+    ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
+    Lock readLock = reentrantReadWriteLock.readLock();
+    Lock writeLock = reentrantReadWriteLock.writeLock();
+
+    /** DO NOT MODIFY THIS SECTION **/
+
     public ProductReviewsService() {
         this.productIdToReviews = new HashMap<>();
-        this.readWriteLock = new ReentrantReadWriteLock(); // Initialize the lock
     }
 
     /**
@@ -99,6 +105,7 @@ public class ProductReviewsService {
         lock.lock();
 
         try {
+
             if (productIdToReviews.containsKey(productId) && !productIdToReviews.get(productId).isEmpty()) {
                 List<String> reviews = productIdToReviews.get(productId);
                 return Optional.of(reviews.get(reviews.size() - 1));
@@ -131,43 +138,36 @@ public class ProductReviewsService {
         }
     }
 
-    /********* LOCKING METHODS ***************/
+    /** END OF UNMODIFIABLE SECTION **/
 
-    // Lock for adding a product
     Lock getLockForAddProduct() {
-        // Use write lock because we are modifying the collection
-        return readWriteLock.writeLock();
+        // Add code here
+        return writeLock;
     }
 
-    // Lock for removing a product
     Lock getLockForRemoveProduct() {
-        // Use write lock because we are modifying the collection
-        return readWriteLock.writeLock();
+        // add code here
+        return writeLock;
     }
 
-    // Lock for adding a product review
     Lock getLockForAddProductReview() {
-        // Use write lock because we are modifying the collection
-        return readWriteLock.writeLock();
+        // add code here
+        return writeLock;
     }
 
-    // Lock for retrieving all reviews of a product
     Lock getLockForGetAllProductReviews() {
-        // Use read lock because we are only reading from the collection
-        return readWriteLock.readLock();
+        // add code here
+        return readLock;
     }
 
-    // Lock for retrieving the latest review of a product
     Lock getLockForGetLatestReview() {
-        // Use read lock because we are only reading from the collection
-        return readWriteLock.readLock();
+        // add code here
+        return readLock;
     }
 
-    // Lock for retrieving all product IDs with reviews
     Lock getLockForGetAllProductIdsWithReviews() {
-        // Use read lock because we are only reading from the collection
-        return readWriteLock.readLock();
+        // add code here
+        return readLock;
     }
 }
-
 

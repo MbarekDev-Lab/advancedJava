@@ -21,6 +21,7 @@ public class Semaphore_Barrier {
         for (Thread thread : threads) {
             thread.start();
         }
+
     }
 
     public static class Barrier {

@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  * Demonstrates a producer-consumer model using thread synchronization in Java.
  * This program reads matrices from a file, processes them using multiple threads,

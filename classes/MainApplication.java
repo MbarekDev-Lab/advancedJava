@@ -73,7 +73,6 @@ public class MainApplication {
                  ∑
                 N−1
                 (m1[r][k]×m2[k][c])
-
                 result[r][c] = m1[r][0] * m2[0][c] + m1[r][1] * m2[1][c] + ... + m1[r][N-1] * m2[N-1][c]
                 
                 

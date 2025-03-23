@@ -9,8 +9,8 @@ import java.util.concurrent.locks.LockSupport;
 
 public class CompareAndSetLockFreeHighPerformance {
     public static void main(String[] args) throws InterruptedException {
-        //StandardStack<Integer> stack = new StandardStack<>();
-        LockFreeStack<Integer> stack = new LockFreeStack<>();
+       // StandardStack<Integer> stack = new StandardStack<>(); // 421,958,279 operations were performed in 10 seconds
+        LockFreeStack<Integer> stack = new LockFreeStack<>(); //361,410,613 operations were performed in 10 seconds 
         Random random = new Random();
 
         for (int i = 0; i < 100000; i++) {

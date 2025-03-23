@@ -20,7 +20,7 @@ public class IoBoundApplication {
         try (ExecutorService executorService = Executors.newCachedThreadPool()) {
 
             for (int i = 0; i < NUMBER_OF_TASKS; i++) {
-                executorService.submit(IoBoundApplication::blockingIoOperation);
+                executorService.submit(IoBoundApplication::blockingIoOperationLong);
             }
         }
     }
@@ -28,7 +28,16 @@ public class IoBoundApplication {
     private static void blockingIoOperation() {
         System.out.println("Executing a blocking task from thread: " + Thread.currentThread());
         try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    // Simulates a long blocking IO
+    private static void blockingIoOperationLong() {
+        System.out.println("Executing a blocking task from thread: " + Thread.currentThread());
+        try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

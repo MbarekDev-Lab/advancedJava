@@ -28,6 +28,7 @@ public class IoBoundApplication {
     private static void blockingIoOperation() {
         System.out.println("Executing a blocking task from thread: " + Thread.currentThread());
         try {
+
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

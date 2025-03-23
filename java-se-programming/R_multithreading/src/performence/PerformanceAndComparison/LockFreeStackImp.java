@@ -80,7 +80,6 @@ public class LockFreeStackImp {
             counter.incrementAndGet();
         }
 
-
         public T pop() {
             StackNode<T> currentHeadNode = head.get();
             StackNode<T> newHeadNode;

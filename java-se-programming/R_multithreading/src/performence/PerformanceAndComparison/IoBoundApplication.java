@@ -30,7 +30,6 @@ public class IoBoundApplication {
 
     private static void performTasks100() {
         try (ExecutorService executorService = Executors.newFixedThreadPool(1000)) {
-
             for (int i = 0; i < NUMBER_OF_TASKS; i++) {
                 executorService.submit(new Runnable() {
                     @Override

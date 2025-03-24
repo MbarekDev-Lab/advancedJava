@@ -13,61 +13,109 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import com.sun.net.httpserver.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.URI;
+import java.net.http.*;
+import java.util.concurrent.*;
 
 public class OnlineStoreWebApplication {
-    private final HttpClient httpClient = HttpClient.newHttpClient();
-    private final ExecutorService executorService = Executors.newFixedThreadPool(10); // Thread pool to handle multiple requests
+    private static final int PORT = 8080;
+    private static final int THREAD_POOL_SIZE = 8;
+    private final HttpClient httpClient;
+    private final ExecutorService executorService;
 
-    public static void main(String[] args) throws IOException {
-        OnlineStoreWebApplication app = new OnlineStoreWebApplication();
-        app.startHttpServer();
+    public OnlineStoreWebApplication() {
+        // Create a fixed thread pool for handling HTTP requests
+        executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
+
+        // Create a non-blocking HTTP client that shares the same executor
+        httpClient = HttpClient.newBuilder()
+                .executor(executorService)
+                .build();
     }
 
-    /** Starts an HTTP Server listening on port 8080 **/
-    private void startHttpServer() throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/", new HttpHandler() {
-            @Override
-            public void handle(HttpExchange exchange) {
-                executorService.submit(() -> handleHttpRequest(exchange)); // Handle request asynchronously
-            }
-        });
+    public void startHttpServer() throws IOException {
+        HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
+        HttpContext context = server.createContext("/");
+        context.setHandler(this::handleHttpRequest);
+
+        server.setExecutor(executorService); // Assign the executor to the server
         server.start();
-        System.out.println("Server started on port 8080...");
+        System.out.println("Server started on port " + PORT);
     }
 
-    /** Handles an incoming HTTP request from a user **/
-    private void handleHttpRequest(HttpExchange httpExchange) {
+    private void handleHttpRequest(HttpExchange exchange) {
+        int numberOfProducts;
         try {
-            int numberOfProducts = parseRequest(httpExchange);
-            URI requestURI = URI.create(String.format("http://best-online-store.com/products?number-of-products=%d", numberOfProducts));
-
-            HttpResponse<String> response = httpClient.send(HttpRequest.newBuilder()
-                    .GET()
-                    .uri(requestURI)
-                    .build(), HttpResponse.BodyHandlers.ofString());
-
-            sendWebpageToUser(httpExchange, response);
+            numberOfProducts = parseRequest(exchange);
         } catch (Exception e) {
+            sendErrorResponse(exchange, "Invalid request format");
+            return;
+        }
+
+        URI requestURI = URI.create(String.format("http://best-online-store/products?number-of-products=%d", numberOfProducts));
+
+        // Asynchronous HTTP request to the Products Application
+        CompletableFuture<HttpResponse<String>> responseFuture = httpClient.sendAsync(
+                HttpRequest.newBuilder()
+                        .GET()
+                        .uri(requestURI)
+                        .build(),
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        // When response is received, send it back to the user
+        responseFuture.thenAccept(response -> sendWebpageToUser(exchange, response))
+                .exceptionally(ex -> {
+                    sendErrorResponse(exchange, "Failed to fetch products");
+                    return null;
+                });
+    }
+
+    private int parseRequest(HttpExchange exchange) throws IOException {
+        String query = exchange.getRequestURI().getQuery();
+        if (query == null || !query.contains("number-of-products=")) {
+            throw new IllegalArgumentException("Missing number-of-products parameter");
+        }
+        return Integer.parseInt(query.split("=")[1]);
+    }
+
+    private void sendWebpageToUser(HttpExchange exchange, HttpResponse<String> response) {
+        try {
+            byte[] responseBytes = response.body().getBytes();
+            exchange.sendResponseHeaders(200, responseBytes.length);
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(responseBytes);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    /** Parses the number of products from the request **/
-    private int parseRequest(HttpExchange httpExchange) {
-        String query = httpExchange.getRequestURI().getQuery();
-        if (query != null && query.contains("number-of-products=")) {
-            return Integer.parseInt(query.split("=")[1]);
+    private void sendErrorResponse(HttpExchange exchange, String message) {
+        try {
+            byte[] responseBytes = message.getBytes();
+            exchange.sendResponseHeaders(500, responseBytes.length);
+            try (OutputStream os = exchange.getResponseBody()) {
+                os.write(responseBytes);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return 1; // Default to 1 product if no parameter is provided
     }
 
-    /** Sends a web page response to the user **/
-    private void sendWebpageToUser(HttpExchange httpExchange, HttpResponse<String> response) throws IOException {
-        String responseBody = "<html><body><h1>Products:</h1><p>" + response.body() + "</p></body></html>";
-        httpExchange.sendResponseHeaders(200, responseBody.length());
-        OutputStream os = httpExchange.getResponseBody();
-        os.write(responseBody.getBytes());
-        os.close();
+    public void stop() {
+        executorService.shutdown();
+    }
+
+    public static void main(String[] args) {
+        try {
+            new OnlineStoreWebApplication().startHttpServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

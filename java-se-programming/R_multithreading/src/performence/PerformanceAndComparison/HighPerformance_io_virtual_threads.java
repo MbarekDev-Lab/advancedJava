@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class HighPerformance_io_virtual_threads {
-    private static final int NUMBER_OF_TASKS = 1000;
+    private static final int NUMBER_OF_TASKS = 10_000;
 
     public static void main(String[] args) {
         System.out.printf("Running %d tasks\n", NUMBER_OF_TASKS);
@@ -15,10 +15,17 @@ public class HighPerformance_io_virtual_threads {
     }
 
     private static void performTasks() {
-        try (ExecutorService executorService = Executors.newCachedThreadPool()) {
+        try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor()) {
 
             for (int i = 0; i < NUMBER_OF_TASKS; i++) {
-                executorService.submit(() ->  blockingIoOperation());
+                executorService.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int j = 0; j < 100; j++) {
+                            blockingIoOperation();
+                        }
+                    }
+                });
             }
         }
     }
@@ -27,7 +34,7 @@ public class HighPerformance_io_virtual_threads {
     private static void blockingIoOperation() {
         System.out.println("Executing a blocking task from thread: " + Thread.currentThread());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -24,7 +24,6 @@ public class VirtualThreads {
     public static void main(String[] args) {
         // Create a standard thread
         Thread thread1 = new Thread(() -> pauseThread("Thread1", 1000));
-
         // Create a platform thread
         Thread thread2 = Thread.ofPlatform().unstarted(() -> pauseThread("Thread2", 2000));
 

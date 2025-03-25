@@ -1,7 +1,6 @@
 package quiz;
 
 import java.util.concurrent.*;
-
 /**
  * The {@code VirtualThreads} class demonstrates the use of different types of threads in Java, including
  * platform threads and virtual threads. The class also showcases the concept of daemon threads and how they

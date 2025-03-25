@@ -25,6 +25,7 @@ public class VirtualThreadsWithBlockingCalls {
 
         @Override
         public void run() {
+
             System.out.println("Inside thread: " + Thread.currentThread() + " before blocking call");
             try {
                 Thread.sleep(1000);

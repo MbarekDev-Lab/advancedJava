@@ -3,6 +3,26 @@ package concurrency.helperClasses;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+public class FixedThreadPoolExample {
+    public static void main(String[] args) {
+        ThreadPool pool = new ThreadPool(3); // Fixed number of threads
+        for (int i = 0; i < 10; i++) {
+            final int taskId = i;
+            pool.submitTask(() -> {
+                System.out.println("Executing task " + taskId);
+                try {
+                    Thread.sleep(1000); // Simulate task work
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+        }
+
+        // Shutdown the pool after tasks are done
+        pool.shutdown();
+    }
+}
+
 class Worker extends Thread {
     private final BlockingQueue<Runnable> taskQueue;
 
@@ -42,26 +62,5 @@ class ThreadPool {
         for (Worker worker : workers) {
             worker.interrupt();
         }
-    }
-}
-
-public class FixedThreadPoolExample {
-    public static void main(String[] args) {
-        ThreadPool pool = new ThreadPool(3); // Fixed number of threads
-
-        for (int i = 0; i < 10; i++) {
-            final int taskId = i;
-            pool.submitTask(() -> {
-                System.out.println("Executing task " + taskId);
-                try {
-                    Thread.sleep(1000); // Simulate task work
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            });
-        }
-
-        // Shutdown the pool after tasks are done
-        pool.shutdown();
     }
 }

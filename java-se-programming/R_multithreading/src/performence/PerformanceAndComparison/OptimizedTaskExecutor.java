@@ -16,7 +16,9 @@ public class OptimizedTaskExecutor {
     // Constructor with adjustable thread pool size for maximum CPU utilization
     public OptimizedTaskExecutor(int threadCount) {
         this.executor = Executors.newFixedThreadPool(threadCount);
+
     }
+    Executor exexcutor = Executors.newVirtualThreadPerTaskExecutor();
 
     // Method to submit tasks for execution in order
     public CompletableFuture<Void> submitTasks(Runnable task1, Runnable task2, Runnable task3, Runnable task4) {

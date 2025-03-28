@@ -2,8 +2,11 @@ package concurrency;
 
 import concurrency.helperClasses.BlockingTask;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class VertualThreadsDemo {
 
@@ -11,6 +14,7 @@ public class VertualThreadsDemo {
     private static final int NUMBER_OF_THREADS = 2;
 
     public static void main(String[] args) throws InterruptedException {
+            Executor exexcutor = Executors.newVirtualThreadPerTaskExecutor();
         // Runnable runnable = () -> System.out.println("Insider thread: " + Thread.currentThread());
         //  runnable.r#un();
         // Thread platformThread = new Thread(runnable);

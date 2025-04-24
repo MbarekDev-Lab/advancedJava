@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/A-Introduction_to_java/A-Introduction_to_java.iml" filepath="$PROJECT_DIR$/A-Introduction_to_java/A-Introduction_to_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/A-Testing-Web-Applications/A-Testing-Web-Applications.iml" filepath="$PROJECT_DIR$/A-Testing-Web-Applications/A-Testing-Web-Applications.iml" />
       <module fileurl="file://$PROJECT_DIR$/C-setup_java_environment/C-setup_java_environment.iml" filepath="$PROJECT_DIR$/C-setup_java_environment/C-setup_java_environment.iml" />
       <module fileurl="file://$PROJECT_DIR$/D-operator_and_expressions/D-operator_and_expressions.iml" filepath="$PROJECT_DIR$/D-operator_and_expressions/D-operator_and_expressions.iml" />
       <module fileurl="file://$PROJECT_DIR$/E-string_class_and_printing/E-string_class_and_printing.iml" filepath="$PROJECT_DIR$/E-string_class_and_printing/E-string_class_and_printing.iml" />

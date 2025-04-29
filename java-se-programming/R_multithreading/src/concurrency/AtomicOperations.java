@@ -5,7 +5,6 @@ import java.util.Random;
 public class AtomicOperations {
     public static void main(String[] args) {
         Metrics metrics = new Metrics();
-
         BusinessLogic businessLogicThread1 = new BusinessLogic(metrics);
 
         BusinessLogic businessLogicThread2 = new BusinessLogic(metrics);

@@ -15,8 +15,8 @@ public class HighPerformance_io_virtual_threads {
     }
 
     private static void performTasks() {
-        try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor()) {
-
+        //try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (ExecutorService executorService = Executors.newCachedThreadPool()) {
             for (int i = 0; i < NUMBER_OF_TASKS; i++) {
                 executorService.submit(new Runnable() {
                     @Override

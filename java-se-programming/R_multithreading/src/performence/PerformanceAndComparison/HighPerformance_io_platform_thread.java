@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class IoBoundApplication {
+public class HighPerformance_io_platform_thread {
     private static final int NUMBER_OF_TASKS = 1000;
 
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class IoBoundApplication {
         try (ExecutorService executorService = Executors.newCachedThreadPool()) {
 
             for (int i = 0; i < NUMBER_OF_TASKS; i++) {
-                executorService.submit(IoBoundApplication::blockingIoOperation);
+                executorService.submit(HighPerformance_io_platform_thread::blockingIoOperation);
             }
         }
     }

@@ -65,7 +65,6 @@ public class LockingStrategieAndDeadLocks {
         public void takeRoadA() {
             synchronized (roadA) {
                 System.out.println("Road A is locked by thread " + Thread.currentThread().getName());
-
                 synchronized (roadB) {
                     System.out.println("Train is passing through road A");
                     try {

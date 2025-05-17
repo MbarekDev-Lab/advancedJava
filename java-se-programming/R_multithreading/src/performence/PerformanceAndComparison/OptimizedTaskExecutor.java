@@ -20,12 +20,12 @@ public class OptimizedTaskExecutor {
     }
     Executor exexcutor = Executors.newVirtualThreadPerTaskExecutor();
 
-    // Method to submit tasks for execution in order
-    public CompletableFuture<Void> submitTasks(Runnable task1, Runnable task2, Runnable task3, Runnable task4) {
-        return CompletableFuture.runAsync(task1, executor)   // Run task 1
-                .thenRunAsync(task2, executor)              // Task 2 after task 1 finishes
-                .thenRunAsync(task3, executor)              // Task 3 after task 2 finishes
-                .thenRunAsync(task4, executor);             // Task 4 after task 3 finishes
+    public CompletableFuture<String> submitTasks(Runnable task1, Runnable task2, Runnable task3, Runnable task4) {
+        return CompletableFuture.runAsync(task1, executor)
+                .thenRunAsync(task2, executor)
+                .thenRunAsync(task3, executor)
+                .thenRunAsync(task4, executor)
+                .thenApplyAsync(result -> "Final Result", executor);
     }
 
     // Graceful shutdown of the ExecutorService

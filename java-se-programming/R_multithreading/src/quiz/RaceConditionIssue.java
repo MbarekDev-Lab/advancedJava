@@ -30,9 +30,10 @@ public class RaceConditionIssue {
 //        long end =  System.currentTimeMillis();;
 //        metric.addSample(end - start);
 //    }
-    //Another thread called Emitter that also has a reference to that instance of the class, calls the getAverage(); method once a minute. That thread sends the average of the execution of criticalMethod(), for the last minute, to an external server.
+    //Another thread called Emitter that also has a reference to that instance of the class,
+   // calls the getAverage(); method once a minute. That thread sends the average of the execution of criticalMethod(), for the last minute, to an external server.
    // Question :
-  //  Is the class thread safe?
+    //  Is the class thread safe?
 
 //    No, the Metric class is not thread-safe.
 //    Multiple threads can modify sum and count at the same time, leading to race
